@@ -1,0 +1,59 @@
+# Assignment 1) MOE or FFN
+
+Models :-
+ChatGPT-3, ChatGPT-4 -> FFN
+Deepseek -> MOE
+Qwen -> FFN as well as MOE
+Gemini -> MOE
+Llama 4 -> MOE
+Llama 2, Llama-3 -> FFN
+
+# Assignment 2) => For Openai/Deepseek/Qwen gather information[context window, input/output tokens]
+
+Openai -
+  1) openai/gpt-5.2-pro
+    context window = 400K
+    input token = $21/M
+    output token = $168/M
+  
+  2) openai/gpt-5.2
+    context window = 400K
+    input token = $1.75/M
+    output token = $14/M
+  
+  3) openai/gpt-5.2-chat
+    context window = 128K
+    input token = $1.75/M
+    output token = $14/M
+  
+Deepseek -
+  1) deepseek/deepseek-v3.2
+    context window = 164K
+    input token = $0.25/M
+    output token = $0.38/M
+  
+  2) deepseek/deepseek-v3.2-speciale
+    context window = 164K
+    input token = $0.27/M
+    output token = $0.41/M
+
+  3) deepseek/deepseek-v3.2-exp
+    context window = 164K
+    input token = $0.27/M
+    output token = $0.41/M
+
+Qwen -
+  1) qwen/qwen-plus-2025-07-28
+    context window = 1M
+    input token = $0.40/M
+    output token = $1.20/M
+  
+  2) qwen/qwen-plus-2025-07-28:thinking
+    context window = 1M
+    input token = $0.40/M
+    output token = $4/M
+  
+  3) qwen/qwen3-30b-a3b-thinking-2507
+    context window = 33K
+    input token = $0.051/M
+    output token = $0.34/M
