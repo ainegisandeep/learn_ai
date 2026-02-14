@@ -1,0 +1,62 @@
+Assignment 2 
+
+1) Iterative Prompting
+
+Version 1
+
+Context -
+As a Senior SDET, write Login API test Cases
+
+Instructions -
+[MANDATORY] Take any Login API from online 
+[MANDATORY] Generate 10 Test Cases having Test Case ID, Description, Method, Request payload, Headers, Response code
+[MANDATORY] Generate Test Cases based on Priority and Severity
+[MANDATORY] Generate Test Cases result in downloadable excel sheet
+
+
+Version 2
+
+Context -
+As a Senior SDET, write Login API test Cases
+
+Instructions -
+[MANDATORY] Take any Login API from online 
+[MANDATORY] Generate 10 Test Cases having Test Case ID, Description, Test Type, Method, Request payload, Headers, Response code
+[MANDATORY] Generate Test Cases based on Priority and Severity
+[MANDATORY] Generate Test Cases result in downloadable excel sheet
+[MANDATORY] Test Type should contain Positive or negative Test Cases
+
+Version 3
+Context -
+As a Senior SDET, write Login API test Cases
+
+Instructions -
+[MANDATORY] Take any Login API from online 
+[MANDATORY] Generate 10 Test Cases having Test Case ID, Description, Test Type, Method, Request payload, Headers, Response code
+[MANDATORY] Generate Test Cases based on Priority and Severity
+[MANDATORY] Generate Test Cases result in downloadable excel sheet
+[MANDATORY] Test Type should contain Positive or negative Test Cases
+[MANDATORY] Test Cases should include Bearer Token Validations also
+
+
+2) Chain-of-thought - Practice 1
+
+Context -
+As a Senior SDET, write Login API test Cases
+
+Instructions -
+[MANDATORY] Generate 10 Test Cases having Test Case ID, Description, Test Type, Method, Request payload, Headers, Response code
+[MANDATORY] Ask me 5 MCQ's for creating Test Cases
+[MANDATORY] Generate Test cases only once i answer for the previous question
+
+3) Chain-of thought - Practice 2
+
+Context - 
+As a Test manager create test cases to test a subscription page
+
+Instructions - 
+[Mandatory] Generate 10 Test Cases having Test Case ID, Description, Test Type, Priority/Severity
+[Mandatory] Ask me MCQ's 1 by 1 until all Test Cases are covered
+[Mandatory] Generate Test cases only once i answer for all the question
+
+
