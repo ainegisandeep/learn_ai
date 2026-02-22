@@ -1,0 +1,655 @@
+Assignment :- 
+
+############### Accessibility DOM ###############
+
+URL - https://api.groq.com/openai/v1/chat/completions
+Method - POST
+Authentication - API Key
+Request Body
+
+{
+ "model": "meta-llama/llama-4-scout-17b-16e-instruct",
+ "temperature": 1,
+ "messages": [
+   {
+     "role": "system",
+     "content": "You are an experienced Accessibility Testing Engineer."
+   },
+   {
+     "role": "user",
+     "content": "You are an experienced Accessibility Testing Engineer. Assistant - Generate Accessibility from the provided DOM.\n\nINSTRUCTIONS\n[STRICTLY] Generate the review document only\n[MANDATORY] Generate accessibility findings as per the Web Content Accessibility Guidelines (WCAG)\n[MANDATORY] Generate output in order based on the DOM structure\n[MANDATORY] Add appropriate tag with example for each finding\n[MANDATORY] Generate the risk involved in each finding\n[MANDATORY] Do not add markdowns\n\nACCESSIBILITY DOM\nurl: https://www.testleaf.com/"
+   }
+ ]
+}
+
+
+############### Response Body ###############
+
+Accessibility Review Document
+Website Reviewed: https://www.testleaf.com/
+Standard Referenced: WCAG 2.x Guidelines
+
+🔎 Summary of Findings
+The following accessibility issues were identified during the review. Each issue includes the affected element, an example fix, WCAG reference, and risk level.
+
+1️⃣ Missing lang Attribute
+Affected Tag: <html>
+Recommended Implementation:
+<html lang="en">
+
+
+WCAG Guideline: 3.1.1 – Language of Page
+Risk Level: 🔴 High
+Impact: Screen readers may not correctly interpret and announce the page language, leading to mispronunciation and confusion for users relying on assistive technologies.
+
+2️⃣ Insufficient Color Contrast
+Affected Selector: .header
+Current Example:
+.header {
+    background-color: #333;
+    color: #fff;
+}
+
+
+WCAG Guideline: 1.4.3 – Contrast (Minimum)
+Risk Level: 🟠 Medium
+Impact: Users with low vision or color vision deficiencies may struggle to read text content if contrast ratios do not meet the minimum 4.5:1 requirement.
+
+3️⃣ Missing Alternative Text for Images
+Affected Tag: <img>
+Incorrect Example:
+<img src="logo.png">
+
+
+Correct Implementation:
+<img src="logo.png" alt="TestLeaf Logo">
+
+
+WCAG Guideline: 1.1.1 – Non-text Content
+Risk Level: 🔴 High
+Impact: Screen readers cannot describe images to visually impaired users without meaningful alt text.
+
+4️⃣ Inaccessible Navigation Structure
+Affected Tag: <nav>
+Recommended Implementation:
+<nav role="navigation">
+    ...
+</nav>
+
+
+WCAG Guideline: 2.4.1 – Bypass Blocks / Navigation
+Risk Level: 🟠 Medium
+Impact: Improperly structured navigation can make it difficult for assistive technology users to move efficiently through the page.
+
+5️⃣ Missing ARIA Labels on Input Fields
+Affected Tag: <input type="search">
+Recommended Implementation:
+<input type="search" aria-label="Search">
+
+
+WCAG Guideline: 2.5.3 – Label in Name
+Risk Level: 🟠 Medium
+Impact: Without accessible labels, screen readers may not correctly describe the purpose of form inputs.
+
+6️⃣ Inconsistent Heading Structure
+Affected Tags: <h1>, <h2>, <h3>
+Recommendation:
+Maintain a logical and hierarchical heading structure (e.g., one <h1> per page, followed by properly nested <h2>, <h3>, etc.).
+WCAG Guideline: 1.3.1 – Info and Relationships
+Risk Level: 🟠 Medium
+Impact: Improper heading order can make it difficult for users to understand content structure and navigate efficiently using assistive tools.
+
+7️⃣ Missing Closed Captions for Audio/Video
+Affected Tags: <video>, <audio>
+Recommendation:
+Provide synchronized captions and transcripts for multimedia content.
+WCAG Guideline: 1.2.2 – Captions (Prerecorded)
+Risk Level: 🔴 High
+Impact: Users with hearing impairments may not be able to access essential information presented in audio or video format.
+
+8️⃣ Inaccessible Form Elements
+Affected Tags: <form>, <input>, <select>
+Recommended Implementation Example:
+<label for="email">Email</label>
+<input type="email" id="email" name="email">
+
+
+WCAG Guideline: 2.1.2 – No Keyboard Trap
+Risk Level: 🟠 Medium
+Impact: Forms without proper labels and keyboard accessibility can prevent users with disabilities from completing tasks.
+
+📌 Overall Recommendations
+✔ Add missing lang attribute to the root HTML element
+✔ Ensure all images contain meaningful alternative text
+✔ Verify color contrast ratios meet WCAG minimum requirements
+✔ Maintain semantic HTML structure with proper heading hierarchy
+✔ Provide ARIA attributes where necessary (without overusing them)
+✔ Ensure full keyboard accessibility across navigation and forms
+✔ Add captions and transcripts to multimedia content
+✔ Conduct manual testing using screen readers (NVDA/VoiceOver) and keyboard-only navigation
+
+
+############### DOM To Selenium ###############
+
+URL - https://api.groq.com/openai/v1/chat/completions
+Method - POST
+Request Payload
+.{
+ "model": "meta-llama/llama-4-scout-17b-16e-instruct",
+ "temperature": 0.1,
+ "messages": [
+   {
+     "role": "system",
+     "content": "As an experienced Senior Automation Engineer, you should be able to analyze DOM structure."
+   },
+   {
+     "role": "user",
+     "content": "Act as an experienced Senior Automation Engineer and analyze the DOM structure.\n\nINSTRUCTIONS -\n\n[STRICTLY] - Always prefer ID\n[STRICTLY] - Avoid index-based XPath\n[STRICTLY] - Avoid dynamic class names\n[STRICTLY] - Avoid dynamic Id\nDo not add markups \n\nDOM\nurl: https://app.simplelogin.io/auth/login\n\n[OUTPUT] - Generate all possible Test Cases\n\n[OUTPUT] - Add Assertions to all Test Cases\n\n"
+   },
+   {
+     "role": "assistant",
+     "content": "Generate Enterprise level Selenium Java Code with TestNG as a runner"
+   }
+ ]
+}
+
+############### Response Body ###############
+
+
+Login Page – DOM Analysis & Test Automation Document
+
+🔎 DOM Analysis
+The DOM structure of the target login page was analyzed following strict element identification guidelines (prefer id, then stable attributes).
+✅ Identified Elements
+Element
+Locator Strategy
+Value
+Username / Email Field
+By.id()
+email
+Password Field
+By.id()
+password
+Login Button
+By.id()
+submit-btn
+
+✔ Using id locators ensures better stability, performance, and maintainability.
+
+🧪 Test Cases
+
+✅ Test Case 1: Valid Login
+Test Case ID: SL-001
+Objective: Verify that a user can log in with valid credentials.
+Preconditions: Valid username and password are available.
+Steps:
+Enter a valid username in the username field.
+Enter a valid password in the password field.
+Click the Login button.
+Expected Result:
+User should be successfully logged in and redirected to the dashboard/home page.
+Assertions:
+Login button is enabled and clickable.
+Username and password fields are not empty.
+Successful login confirmation (e.g., dashboard element or welcome message is displayed).
+
+❌ Test Case 2: Invalid Login
+Test Case ID: SL-002
+Objective: Verify error handling for invalid credentials.
+Preconditions: Invalid username and/or password.
+Steps:
+Enter an invalid username.
+Enter an invalid password.
+Click the Login button.
+Expected Result:
+An appropriate error message is displayed.
+Assertions:
+Error message is visible.
+Error message text matches expected value (e.g., "Invalid credentials").
+
+⚠ Test Case 3: Empty Username
+Test Case ID: SL-003
+Objective: Verify validation when username field is empty.
+Preconditions: Username field left blank.
+Steps:
+Leave username field empty.
+Enter valid password.
+Click Login.
+Expected Result:
+Validation error message is displayed for username field.
+Assertions:
+Error message is displayed.
+Message text matches expected value (e.g., "Email is required").
+
+⚠ Test Case 4: Empty Password
+Test Case ID: SL-004
+Objective: Verify validation when password field is empty.
+Preconditions: Password field left blank.
+Steps:
+Enter valid username.
+Leave password field empty.
+Click Login.
+Expected Result:
+Validation error message is displayed for password field.
+Assertions:
+Error message is displayed.
+Message text matches expected value (e.g., "Password is required").
+
+💻 Selenium Automation – Java + TestNG
+Below is a structured and improved implementation.
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+
+public class SimpleLoginTest {
+
+
+    WebDriver driver;
+
+
+    @BeforeMethod
+    public void setup() {
+        System.setProperty("webdriver.chrome.driver", "/path/to/chromedriver");
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.get("https://app.simplelogin.io/auth/login");
+    }
+
+
+    @Test
+    public void validLogin() {
+
+
+        WebElement usernameField = driver.findElement(By.id("email"));
+        WebElement passwordField = driver.findElement(By.id("password"));
+        WebElement loginButton = driver.findElement(By.id("submit-btn"));
+
+
+        usernameField.sendKeys("valid_username");
+        passwordField.sendKeys("valid_password");
+
+
+        Assert.assertTrue(loginButton.isEnabled(), "Login button is not enabled");
+
+
+        loginButton.click();
+
+
+        // Example post-login validation (Update locator as needed)
+        Assert.assertTrue(driver.getCurrentUrl().contains("dashboard"),
+                "User is not redirected to dashboard");
+    }
+
+
+    @Test
+    public void invalidLogin() {
+
+
+        driver.findElement(By.id("email")).sendKeys("invalid_username");
+        driver.findElement(By.id("password")).sendKeys("invalid_password");
+        driver.findElement(By.id("submit-btn")).click();
+
+
+        WebElement errorMessage =
+                driver.findElement(By.xpath("//div[contains(@class,'error')]"));
+
+
+        Assert.assertTrue(errorMessage.isDisplayed(), "Error message not displayed");
+        Assert.assertTrue(errorMessage.getText().contains("Invalid"),
+                "Incorrect error message text");
+    }
+
+
+    @Test
+    public void emptyUsername() {
+
+
+        driver.findElement(By.id("password")).sendKeys("valid_password");
+        driver.findElement(By.id("submit-btn")).click();
+
+
+        WebElement errorMessage =
+                driver.findElement(By.xpath("//div[contains(@class,'error')]"));
+
+
+        Assert.assertTrue(errorMessage.isDisplayed());
+        Assert.assertTrue(errorMessage.getText().contains("Email"));
+    }
+
+
+    @Test
+    public void emptyPassword() {
+
+
+        driver.findElement(By.id("email")).sendKeys("valid_username");
+        driver.findElement(By.id("submit-btn")).click();
+
+
+        WebElement errorMessage =
+                driver.findElement(By.xpath("//div[contains(@class,'error')]"));
+
+
+        Assert.assertTrue(errorMessage.isDisplayed());
+        Assert.assertTrue(errorMessage.getText().contains("Password"));
+    }
+
+
+    @AfterMethod
+    public void tearDown() {
+        driver.quit();
+    }
+}
+
+############### Use of STOP in Request ###############
+
+URL - https://api.groq.com/openai/v1/chat/completions
+Method - POST
+Request Body
+{
+ "model": "meta-llama/llama-4-scout-17b-16e-instruct",
+ "temperature": 0.1,
+ "stop": ["LoginAPI_TC007"],
+ "messages": [
+   {
+     "role": "system",
+     "content": "You are an experienced Accessibility Testing Engineer."
+   },
+   {
+     "role": "user",
+     "content": "Context:\nAs a Senior SDET, generate test cases for a Login API.\n\nINSTRUCTIONS-\n[MANDATORY] - In a Login API, there is user email, password and forgot password as a key\n[STRICTLY] - Login API uses API key for user Authentication\n[MANDATORY] - Generate Test Case ID starting from LoginAPI_TC001\n[MANDATORY] - Generate Test Cases with the following fields:\nTest Case ID\nDescription\nTest Type (Positive or Negative)\nMethod\nRequest Payload\nHeaders\nResponse Code\n[MANDATORY] - Prioritize Test Cases based on Severity.\n[MANDATORY] - Ensure both Positive and Negative scenarios are covered."
+   }
+ ]
+}
+
+############### Response Body ###############
+
+🧪 Login API – Test Cases Document
+Below are the structured and professional test cases for the Login API.
+
+📌 API Details
+Endpoint: /api/login
+Method: POST
+Content-Type: application/json
+Authentication Header: API-Key: abc123
+
+📋 Test Cases
+Test Case ID
+Description
+Test Type
+HTTP Method
+Request Payload
+Headers
+Expected Status Code
+Severity
+LoginAPI_TC001
+Verify login with valid credentials
+Positive
+POST
+{ "email": "user@example.com", "password": "password123" }
+API-Key: abc123
+200 OK
+🔴 High
+LoginAPI_TC002
+Verify login with invalid email format
+Negative
+POST
+{ "email": "invalid_email", "password": "password123" }
+API-Key: abc123
+401 Unauthorized
+🔴 High
+LoginAPI_TC003
+Verify login with incorrect password
+Negative
+POST
+{ "email": "user@example.com", "password": "wrong_password" }
+API-Key: abc123
+401 Unauthorized
+🔴 High
+LoginAPI_TC004
+Verify login when email field is missing
+Negative
+POST
+{ "password": "password123" }
+API-Key: abc123
+400 Bad Request
+🟠 Medium
+LoginAPI_TC005
+Verify login when password field is missing
+Negative
+POST
+{ "email": "user@example.com" }
+API-Key: abc123
+400 Bad Request
+🟠 Medium
+LoginAPI_TC006
+Verify login with empty email and password
+Negative
+POST
+{ "email": "", "password": "" }
+API-Key: abc123
+400 Bad Request
+🟠 Medium
+
+
+✅ Expected Validations per Test Case
+For each test execution, validate:
+✔ Status code matches expected result
+✔ Response body contains appropriate success or error message
+✔ Error response structure follows standard API contract
+✔ Authentication header is properly validated
+✔ No sensitive data is exposed in error responses
+
+
+
+############### Top_p ###############
+
+URL - https://api.groq.com/openai/v1/chat/completions
+Method - POST
+Request payload 
+{
+ "model": "meta-llama/llama-4-scout-17b-16e-instruct",
+//   "stop": ["LoginAPI_TC007"],
+   "top_p": 0.8,
+ "messages": [
+   {
+     "role": "system",
+     "content": "You are an experienced Accessibility Testing Engineer."
+   },
+   {
+     "role": "user",
+     "content": "Context:\nAs a Senior SDET, generate test cases for a Login API.\n\nINSTRUCTIONS-\n[MANDATORY] - In a Login API, there is user email, password and forgot password as a key\n[STRICTLY] - Login API uses API key for user Authentication\n[MANDATORY] - Generate 10 Test Cases\n[MANDATORY] - Generate Test Cases with the following fields:\nTest Case ID\nDescription\nTest Type (Positive or Negative)\nMethod\nRequest Payload\nHeaders\nResponse Code\n[MANDATORY] - Prioritize Test Cases based on Severity.\n[MANDATORY] - Ensure both Positive and Negative scenarios are covered."
+   }
+ ]
+}
+
+############### Response body ###############
+
+
+🧪 Login API – Comprehensive Test Cases (Severity-Based Prioritization)
+📌 API Overview
+Endpoint: /api/login
+Method: POST
+Content-Type: application/json
+Authentication: api-key in request header
+
+🔴 High Severity Test Cases
+Critical authentication & authorization validations (must pass before release)
+
+✅ TC-LOGIN-001: Successful Login
+Description: Verify login with valid credentials
+Test Type: Positive
+Request Payload:
+{ "email": "user@example.com", "password": "password123" }
+
+
+Headers:
+{ "api-key": "your_api_key" }
+
+
+Expected Response Code: 200 OK
+Expected Result: API returns authentication token / success response.
+
+❌ TC-LOGIN-004: Invalid API Key
+Description: Verify login fails with invalid API key
+Test Type: Negative
+Request Payload:
+{ "email": "user@example.com", "password": "password123" }
+
+
+Headers:
+{ "api-key": "invalid_api_key" }
+
+
+Expected Response Code: 401 Unauthorized
+Expected Result: Proper authentication error message returned.
+
+❌ TC-LOGIN-007: Incorrect Password
+Description: Verify login fails with incorrect password
+Test Type: Negative
+Request Payload:
+{ "email": "user@example.com", "password": "wrong_password" }
+
+
+Headers:
+{ "api-key": "your_api_key" }
+
+
+Expected Response Code: 401 Unauthorized
+Expected Result: Error message indicating invalid credentials.
+
+❌ TC-LOGIN-010: Expired API Key
+Description: Verify login fails when API key is expired
+Test Type: Negative
+Request Payload:
+{ "email": "user@example.com", "password": "password123" }
+
+
+Headers:
+{ "api-key": "expired_api_key" }
+
+
+Expected Response Code: 401 Unauthorized
+Expected Result: API returns expiration/authentication error.
+
+🟠 Medium Severity Test Cases
+Input validation & account status validations
+
+❌ TC-LOGIN-002: Invalid Email Format
+Description: Verify login fails with invalid email format
+Test Type: Negative
+Payload:
+{ "email": "invalid_email", "password": "password123" }
+
+
+Expected Response Code: 400 Bad Request
+
+❌ TC-LOGIN-003: Missing Password
+Description: Verify login fails when password field is missing
+Test Type: Negative
+Payload:
+{ "email": "user@example.com" }
+
+
+Expected Response Code: 400 Bad Request
+
+❌ TC-LOGIN-005: Missing Email
+Description: Verify login fails when email field is missing
+Test Type: Negative
+Payload:
+{ "password": "password123" }
+
+
+Expected Response Code: 400 Bad Request
+
+❌ TC-LOGIN-008: Email Not Verified
+Description: Verify login fails if email is not verified
+Test Type: Negative
+Payload:
+{ "email": "unverified_email@example.com", "password": "password123" }
+
+
+Expected Response Code: 403 Forbidden
+
+❌ TC-LOGIN-009: Account Locked
+Description: Verify login fails if account is locked
+Test Type: Negative
+Payload:
+{ "email": "locked_account@example.com", "password": "password123" }
+
+
+Expected Response Code: 423 Locked
+
+🟢 Low Severity Test Case
+
+🔁 TC-LOGIN-006: Forgot Password Flow
+Description: Verify forgot password functionality
+Test Type: Positive
+Payload:
+{ "email": "user@example.com", "forgot_password": true }
+
+
+Expected Response Code: 200 OK
+Expected Result: Password reset process initiated successfully.
+
+📊 Severity Summary
+Severity
+Test Cases
+🔴 High
+TC-LOGIN-001, TC-LOGIN-004, TC-LOGIN-007, TC-LOGIN-010
+🟠 Medium
+TC-LOGIN-002, TC-LOGIN-003, TC-LOGIN-005, TC-LOGIN-008, TC-LOGIN-009
+🟢 Low
+TC-LOGIN-006
+
+
+############### WebSearch ###############
+
+URL - https://api.groq.com/openai/v1/chat/completions
+Method - POST
+Request Payload
+{
+ "model": "groq/compound",
+ "temperature": 0.1,
+ "messages": [
+   {
+     "role": "user",
+     "content": "Who won Zimbabwe Vs Ireland ICC Men's T20 World Cup match in Srilanka"
+   }
+ ]
+}
+
+############### Response Body ###############
+
+
+Answer
+The ICC Men's T20 World Cup Group B match between Zimbabwe national cricket team and Ireland cricket team, played at Pallekele International Cricket Stadium on 17 February 2026, did not produce a winner.
+🏏 What Happened?
+The match was abandoned without a toss.
+No ball was bowled due to persistent rain.
+The game is officially recorded as “No Result (Abandoned)”.
+📌 Impact on the Tournament
+Zimbabwe secured enough points to qualify for the Super Eight stage.
+Ireland were eliminated from the tournament.
+Australia were also eliminated as a result of this washout scenario.
+
+✅ Conclusion
+Because the match was abandoned due to rain, there was no winner between Zimbabwe and Ireland.
+The official result: No Result (Match Abandoned).
+
+
+
+
+
+
+
+
+
+
+
+
